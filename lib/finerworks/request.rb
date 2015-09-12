@@ -1,0 +1,18 @@
+require 'uri'
+require 'net/http'
+require 'json'
+
+module FinerWorks
+  class Request
+    BASE_URL = "http://api.finerworks.com/api"
+
+    def self.get(client, path, options = {})
+      path.prepend("/") if !path.start_with?("/")
+      uri = URI.parse("#{BASE_URL}#{path}?AccountApiKey=#{client.account_api_key}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      JSON.parse(response.body, symbolize_names: true)
+    end
+  end
+end

@@ -6,4 +6,6 @@ Gem::Specification.new do |s|
   s.email = %w(jeff.fredrickson@gmail.com)
   s.files = %w(lib/finerworks.rb) + Dir['lib/finerworks/*.rb']
   s.license = 'MIT'
+
+  s.add_runtime_dependency 'json', "~> 1.4"
 end
