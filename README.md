@@ -24,7 +24,7 @@ You can retrieve and update your account information.
 > account.phone = "123-456-7890"
 => "123-456-7890"
 > client.update_account(account)
-=> #<Net::HTTPOK 200 OK readbody=true>
+=> {"ResponseContent"=>"Success", "ResponseStatusCode"=>"OK"}
 ```
 
 ### Galleries

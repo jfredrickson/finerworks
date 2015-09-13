@@ -23,6 +23,7 @@ module FinerWorks
       request.body = options[:query].to_json
       request.content_type = "application/json"
       response = http.request(request)
+      JSON.parse(response.body)
     end
   end
 end
