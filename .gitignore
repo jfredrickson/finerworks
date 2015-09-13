@@ -6,3 +6,6 @@
 
 # Ignore operating system files.
 .DS_Store
+
+# Ignore Gemfile.lock, since this is a gem.
+Gemfile.lock
