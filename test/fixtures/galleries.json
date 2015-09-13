@@ -1,0 +1,17 @@
+[
+  {
+    "GalleryTitle": "Gallery 1",
+    "GalleryActive": "True",
+    "GalleryGUID": "f82dd0bd-4711-4578-ac47-4661257e69a6"
+  },
+  {
+    "GalleryTitle": "Gallery 2",
+    "GalleryActive": "False",
+    "GalleryGUID": "2f624784-9d17-4846-a153-c9126869034c"
+  },
+  {
+    "GalleryTitle": "Gallery 3",
+    "GalleryActive": "True",
+    "GalleryGUID": "0acba9b7-7276-484f-b5f9-f0d3e1c372e7"
+  }
+]
