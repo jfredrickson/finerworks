@@ -12,7 +12,17 @@ module FinerWorks
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
-      JSON.parse(response.body, symbolize_names: true)
+      JSON.parse(response.body)
+    end
+
+    def self.post(client, path, options = {})
+      path.prepend("/") if !path.start_with?("/")
+      uri = URI.parse("#{BASE_URL}#{path}?AccountApiKey=#{client.account_api_key}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.body = options[:query].to_json
+      request.content_type = "application/json"
+      response = http.request(request)
     end
   end
 end
