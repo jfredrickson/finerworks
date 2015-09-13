@@ -28,7 +28,11 @@ module FinerWorks
     end
 
     def update_account(account)
-      result = FinerWorks::Request.post(self, "/Account", {
+      result = FinerWorks::Request.post(self, "/Account", build_post_account_json(account))
+    end
+
+    def build_post_account_json(account)
+      {
         "AccountApiKey": account_api_key,
         "AccountUsername": account.username,
         "AccountUpdate_Info": {
@@ -40,7 +44,7 @@ module FinerWorks
           "AccountBio": account.bio,
           "AccountTitle": account.title
         }
-      })
+      }
     end
   end
 end
