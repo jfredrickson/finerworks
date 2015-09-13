@@ -3,3 +3,6 @@
 
 # Ignore local development environment files.
 /.env/
+
+# Ignore operating system files.
+.DS_Store
