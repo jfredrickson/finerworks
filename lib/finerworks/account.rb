@@ -15,7 +15,7 @@ module FinerWorks
     property :business_phone, from: "AccountBusinessPhone"
     property :business_fax, from: "AccountBusinessFax"
     property :username, from: "AccountUsername"
-    property :registration_date, from: "AccountRegistrationDate", transform_with: -> (d) { Time.utc(*(d.split(/[-T:]/).map { |t| t.to_i })) }
+    property :registration_date, from: "AccountRegistrationDate", transform_with: -> (d) { FinerWorks::Utilities.parse_api_time(d) }
     property :email, from: "AccountEmail"
     property :type, from: "AccountType"
     property :first_name, from: "AccountFirstName"
