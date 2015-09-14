@@ -8,7 +8,11 @@ module FinerWorks
 
     def self.get(client, path, options = {})
       path.prepend("/") if !path.start_with?("/")
-      uri = URI.parse("#{BASE_URL}#{path}?AccountApiKey=#{client.account_api_key}")
+      params = ""
+      options.each do |option|
+        params = params + "&#{option[0].to_s}=#{option[1]}"
+      end
+      uri = URI.parse("#{BASE_URL}#{path}?AccountApiKey=#{client.account_api_key}#{params}")
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
