@@ -26,6 +26,11 @@ module FinerWorks
       result = FinerWorks::Request.post(self, "/Account", build_post_account_json(account))
     end
 
+    # Lists prints stored in My Prints Inventory.
+    #
+    # ==== Options hash:
+    # ["ImageGUID"] Filter by image.
+    # ["GalleryGUID"] Filter by gallery.
     def prints(options = {})
       result = FinerWorks::Request.get(self, "/Prints", options)
       prints = []
@@ -45,6 +50,11 @@ module FinerWorks
       galleries
     end
 
+    # Lists images stored in My Images.
+    #
+    # ==== Options hash:
+    # ["Sort"] Sort images by upload date in ascending or descending order. Possible values are "ASC" and "DESC".
+    #          Default is descending.
     def images(gallery_guid, options = {})
       options.merge("GalleryGUID": gallery_guid)
       result = FinerWorks::Request.get(self, "/Images", options)
