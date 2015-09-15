@@ -13,11 +13,18 @@ module FinerWorks
       yield(self) if block_given?
     end
 
+    # Provides account profile information.
     def account
       result = FinerWorks::Request.get(self, "/Account")
       FinerWorks::Account.new(result)
     end
 
+    # Updates account profile information.
+    def update_account(account)
+      result = FinerWorks::Request.post(self, "/Account", build_post_account_json(account))
+    end
+
+    # Lists galleries (aka portfolios) under the current account.
     def galleries
       result = FinerWorks::Request.get(self, "/Galleries")
       galleries = []
@@ -25,10 +32,6 @@ module FinerWorks
         galleries << FinerWorks::Gallery.new(g)
       end
       galleries
-    end
-
-    def update_account(account)
-      result = FinerWorks::Request.post(self, "/Account", build_post_account_json(account))
     end
 
     def build_post_account_json(account)
