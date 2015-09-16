@@ -53,10 +53,10 @@ module FinerWorks
     # Lists images stored in My Images.
     #
     # ==== Options hash:
+    # ["GalleryGUID"] Filter by gallery.
     # ["Sort"] Sort images by upload date in ascending or descending order. Possible values are "ASC" and "DESC".
     #          Default is descending.
-    def images(gallery_guid, options = {})
-      options.merge("GalleryGUID": gallery_guid)
+    def images(options = {})
       result = FinerWorks::Request.get(self, "/Images", options)
     end
 
