@@ -23,5 +23,6 @@ module FinerWorks
     property :gallery_active, from: "GalleryActive"
 
     alias_method :active?, :active
+    alias_method :gallery_active?, :active
   end
 end
