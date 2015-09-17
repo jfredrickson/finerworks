@@ -9,7 +9,7 @@ class TestPrint < Minitest::Test
   def test_attributes
     assert_equal "Untitled", @print.title
     assert_equal "12345678-abcd-abcd-abcd-12345678abcd", @print.guid
-    assert_equal Time.new(2015, 9, 13, 21, 00, 05, "-05:00"), @print.date_added
+    assert_equal Time.new(2015, 9, 13, 0, 0, 0, "-06:00"), @print.date_added
     assert_equal 50.0, @print.sale_price
     assert_equal "", @print.card_stock_name
   end
