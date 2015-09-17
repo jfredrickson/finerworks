@@ -53,11 +53,11 @@ You can retrieve a list of your galleries.
 
 ### Images
 
-You can retrieve a list of images in a given gallery. Optionally, sort by upload date (`ASC` or `DESC`; default is descending).
+You can retrieve a list of images in a given gallery. Optionally, filter by Gallery GUID and sort by upload date (`ASC` or `DESC`; default is descending).
 
 ```ruby
-> images = client.images("12345678-abcd-abcd-abcd-12345678abcd")
+> images = client.images
 => [#<FinerWorks::Image ...>, #<FinerWorks::Image ...>, ...]
-> images = client.images("12345678-abcd-abcd-abcd-12345678abcd", sort: "ASC")
+> images = client.images("GalleryGUID": "12345678-abcd-abcd-abcd-12345678abcd", sort: "ASC")
 => [#<FinerWorks::Image ...>, #<FinerWorks::Image ...>, ...]
 ```
