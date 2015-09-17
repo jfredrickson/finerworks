@@ -32,24 +32,12 @@ module FinerWorks
     # ["ImageGUID"] Filter by image.
     # ["GalleryGUID"] Filter by gallery.
     def prints(options = {})
-      result = FinerWorks::Request.get(self, "/Prints", options)
-      result = result.kind_of?(Array) ? result : [result]
-      prints = []
-      result.each do |p|
-        prints << FinerWorks::Print.new(p)
-      end
-      prints
+      get(FinerWorks::Print, "/Prints", options)
     end
 
     # Lists galleries (aka portfolios) under the current account.
     def galleries
-      result = FinerWorks::Request.get(self, "/Galleries")
-      result = result.kind_of?(Array) ? result : [result]
-      galleries = []
-      result.each do |g|
-        galleries << FinerWorks::Gallery.new(g)
-      end
-      galleries
+      get(FinerWorks::Gallery, "/Galleries")
     end
 
     # Lists images stored in My Images.
@@ -59,13 +47,18 @@ module FinerWorks
     # ["Sort"] Sort images by upload date in ascending or descending order. Possible values are "ASC" and "DESC".
     #          Default is descending.
     def images(options = {})
-      result = FinerWorks::Request.get(self, "/Images", options)
-      result = result.kind_of?(Array) ? result : [result]
-      images = []
-      result.each do |i|
-        images << FinerWorks::Image.new(i)
+      get(FinerWorks::Image, "/Images", options)
+    end
+
+    # Generic GET method to request items of the specified +type+.
+    def get(type, path, options = {})
+      response = FinerWorks::Request.get(self, path, options)
+      response = response.kind_of?(Array) ? response : [response]
+      results = []
+      response.each do |r|
+        results << type.new(r)
       end
-      images
+      results
     end
 
     def build_post_account_json(account)
