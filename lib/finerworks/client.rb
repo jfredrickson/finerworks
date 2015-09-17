@@ -58,6 +58,11 @@ module FinerWorks
     #          Default is descending.
     def images(options = {})
       result = FinerWorks::Request.get(self, "/Images", options)
+      images = []
+      result.each do |i|
+        images << FinerWorks::Image.new(i)
+      end
+      images
     end
 
     def build_post_account_json(account)
