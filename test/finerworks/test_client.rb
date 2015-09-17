@@ -61,6 +61,12 @@ class TestClient < Minitest::Test
         assert_equal FinerWorks::Print, p.class
       end
     end
+    FinerWorks::Request.stub(:get, read_fixture("print.json")) do
+      one_print = @client.prints
+      assert_equal Array, one_print.class
+      assert_equal 1, one_print.count
+      assert_equal FinerWorks::Print, one_print.first.class
+    end
   end
 
   # Verify that the client returns gallery data in the correct format.
@@ -73,6 +79,12 @@ class TestClient < Minitest::Test
         assert_equal FinerWorks::Gallery, g.class
       end
     end
+    FinerWorks::Request.stub(:get, read_fixture("gallery.json")) do
+      one_gallery = @client.galleries
+      assert_equal Array, one_gallery.class
+      assert_equal 1, one_gallery.count
+      assert_equal FinerWorks::Gallery, one_gallery.first.class
+    end
   end
 
   # Verify that the client returns image data in the correct format.
@@ -84,6 +96,12 @@ class TestClient < Minitest::Test
       images.each do |i|
         assert_equal FinerWorks::Image, i.class
       end
+    end
+    FinerWorks::Request.stub(:get, read_fixture("image.json")) do
+      one_image = @client.images
+      assert_equal Array, one_image.class
+      assert_equal 1, one_image.count
+      assert_equal FinerWorks::Image, one_image.first.class
     end
   end
 end

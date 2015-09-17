@@ -33,6 +33,7 @@ module FinerWorks
     # ["GalleryGUID"] Filter by gallery.
     def prints(options = {})
       result = FinerWorks::Request.get(self, "/Prints", options)
+      result = result.kind_of?(Array) ? result : [result]
       prints = []
       result.each do |p|
         prints << FinerWorks::Print.new(p)
@@ -43,6 +44,7 @@ module FinerWorks
     # Lists galleries (aka portfolios) under the current account.
     def galleries
       result = FinerWorks::Request.get(self, "/Galleries")
+      result = result.kind_of?(Array) ? result : [result]
       galleries = []
       result.each do |g|
         galleries << FinerWorks::Gallery.new(g)
@@ -58,6 +60,7 @@ module FinerWorks
     #          Default is descending.
     def images(options = {})
       result = FinerWorks::Request.get(self, "/Images", options)
+      result = result.kind_of?(Array) ? result : [result]
       images = []
       result.each do |i|
         images << FinerWorks::Image.new(i)
