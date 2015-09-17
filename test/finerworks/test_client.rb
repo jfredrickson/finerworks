@@ -35,16 +35,16 @@ class TestClient < Minitest::Test
   # Verify that the helper method generates appropriate JSON body content for the "POST /Account" request.
   def test_build_post_account_json
     expected = {
-      "AccountApiKey": "15b1431c-6d9c-4bf3-8bce-e89e6887a3f2",
-      "AccountUsername": "milton_waddams",
-      "AccountUpdate_Info": {
-        "AccountEmail": "milton_waddams@initech.com",
-        "AccountFirstName": "Milton",
-        "AccountMiddleName": "",
-        "AccountLastName": "Waddams",
-        "AccountPhone": "555-555-1212",
-        "AccountBio": "",
-        "AccountTitle": ""
+      "AccountApiKey" => "15b1431c-6d9c-4bf3-8bce-e89e6887a3f2",
+      "AccountUsername" => "milton_waddams",
+      "AccountUpdate_Info" => {
+        "AccountEmail" => "milton_waddams@initech.com",
+        "AccountFirstName" => "Milton",
+        "AccountMiddleName" => "",
+        "AccountLastName" => "Waddams",
+        "AccountPhone" => "555-555-1212",
+        "AccountBio" => "",
+        "AccountTitle" => ""
       }
     }
     result = @client.build_post_account_json(@account)
