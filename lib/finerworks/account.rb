@@ -1,7 +1,5 @@
 module FinerWorks
-  class Account < Hashie::Dash
-    include Hashie::Extensions::Dash::PropertyTranslation
-
+  class Account < Hashie::Trash
     property :business_company_name, from: "AccountBusinessCompanyName"
     property :business_department, from: "AccountBusinessDepartment"
     property :company_description, from: "AccountCompanyDescription"

@@ -1,7 +1,5 @@
 module FinerWorks
-  class Image < Hashie::Dash
-    include Hashie::Extensions::Dash::PropertyTranslation
-
+  class Image < Hashie::Trash
     property :guid, from: "ImageGUID"
     property :url, from: "ImageUrl"
     property :url_thumbnail, from: "ImageUrl_Thumbnail"

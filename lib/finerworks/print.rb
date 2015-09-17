@@ -1,7 +1,5 @@
 module FinerWorks
-  class Print < Hashie::Dash
-    include Hashie::Extensions::Dash::PropertyTranslation
-
+  class Print < Hashie::Trash
     property :add_on_title, from: "AddOnTitle"
     property :canvas_add_on_name, from: "CanvasAddOnName"
     property :card_stock_name, from: "CardStockName"
