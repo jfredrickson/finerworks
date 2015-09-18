@@ -1,8 +1,15 @@
 # FinerWorks Ruby Gem
 
 [![Build Status](https://travis-ci.org/jfredrickson/finerworks.svg?branch=master)](https://travis-ci.org/jfredrickson/finerworks)
+[![Gem Version](https://badge.fury.io/rb/finerworks.svg)](http://badge.fury.io/rb/finerworks)
 
 A Ruby interface for the [FinerWorks Web API](http://api.finerworks.com/).
+
+## Installation
+
+```ruby
+gem install finerworks
+```
 
 ## Usage
 
