@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestAccount < Minitest::Test
   def setup
-    @account = FinerWorks::Account.new(read_fixture("account.json"))
+    @account = FinerWorks::Account.new(read_fixture_as_json("account.json"))
   end
 
   # Verify that Account correctly initializes its attributes from the Web API.

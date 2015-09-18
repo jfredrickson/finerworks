@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestGallery < Minitest::Test
   def setup
-    @gallery = FinerWorks::Gallery.new(read_fixture("gallery.json"))
+    @gallery = FinerWorks::Gallery.new(read_fixture_as_json("gallery.json"))
   end
 
   # Verify that Gallery correctly initializes its attributes from the Web API.

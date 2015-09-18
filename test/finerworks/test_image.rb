@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestImage < Minitest::Test
   def setup
-    @image = FinerWorks::Image.new(read_fixture("image.json"))
+    @image = FinerWorks::Image.new(read_fixture_as_json("image.json"))
   end
 
   # Verify that Image correctly initializes its attributes from the Web API.

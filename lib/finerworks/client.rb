@@ -1,4 +1,5 @@
 require 'finerworks/request'
+require 'finerworks/response'
 require 'finerworks/account'
 require 'finerworks/print'
 require 'finerworks/gallery'
@@ -19,7 +20,7 @@ module FinerWorks
     # Provides account profile information.
     def account
       result = FinerWorks::Request.get(self, "/Account")
-      FinerWorks::Account.new(result)
+      FinerWorks::Account.new(result.json)
     end
 
     # Updates account profile information.
@@ -64,13 +65,13 @@ module FinerWorks
       get(FinerWorks::Order, "/Orders", options)
     end
 
-    # Generic GET method to request items of the specified +type+.
+    # Generic GET method to request items of the specified +type+. This always returns an +Array+.
     def get(type, path, options = {})
       response = FinerWorks::Request.get(self, path, options)
-      response = response.kind_of?(Array) ? response : [response]
+      items = response.json.kind_of?(Array) ? response.json : [response.json]
       results = []
-      response.each do |r|
-        results << type.new(r)
+      items.each do |item|
+        results << type.new(item)
       end
       results
     end

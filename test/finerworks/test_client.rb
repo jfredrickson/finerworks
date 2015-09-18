@@ -5,7 +5,7 @@ class TestClient < Minitest::Test
     @key = "15b1431c-6d9c-4bf3-8bce-e89e6887a3f2"
     @success_response_body = { "ResponseContent" => "Success", "ResponseStatusCode" => "OK" }.to_json
     @client = FinerWorks::Client.new(account_api_key: @key)
-    @account = FinerWorks::Account.new(read_fixture("account.json"))
+    @account = FinerWorks::Account.new(read_fixture_as_json("account.json"))
   end
 
   # Verify that the client has the correct value for the account API key.
@@ -15,11 +15,10 @@ class TestClient < Minitest::Test
 
   # Verify that the client returns account data in the correct format.
   def test_account
-    FinerWorks::Request.stub(:get, read_fixture("account.json")) do
-      account = @client.account
-      assert_equal FinerWorks::Account, account.class
-      assert_equal "Milton", account.first_name
-    end
+    stub_http_with_fixture("account.json")
+    account = @client.account
+    assert_equal FinerWorks::Account, account.class
+    assert_equal "Milton", account.first_name
   end
 
   # Verify that the client provides updated account information in the correct format.
@@ -53,73 +52,73 @@ class TestClient < Minitest::Test
 
   # Verify that the client returns prints data in the correct format.
   def test_prints
-    FinerWorks::Request.stub(:get, read_fixture("prints.json")) do
-      prints = @client.prints
-      assert_equal Array, prints.class
-      assert_equal 3, prints.count
-      prints.each do |p|
-        assert_equal FinerWorks::Print, p.class
-      end
+    stub_http_with_fixture("prints.json")
+    prints = @client.prints
+    assert_equal Array, prints.class
+    assert_equal 3, prints.count
+    prints.each do |p|
+      assert_equal FinerWorks::Print, p.class
     end
-    FinerWorks::Request.stub(:get, read_fixture("print.json")) do
-      one_print = @client.prints
-      assert_equal Array, one_print.class
-      assert_equal 1, one_print.count
-      assert_equal FinerWorks::Print, one_print.first.class
-    end
+    stub_http_with_fixture("print.json")
+    one_print = @client.prints
+    assert_equal Array, one_print.class
+    assert_equal 1, one_print.count
+    assert_equal FinerWorks::Print, one_print.first.class
   end
 
   # Verify that the client returns gallery data in the correct format.
   def test_galleries
-    FinerWorks::Request.stub(:get, read_fixture("galleries.json")) do
-      galleries = @client.galleries
-      assert_equal Array, galleries.class
-      assert_equal 3, galleries.count
-      galleries.each do |g|
-        assert_equal FinerWorks::Gallery, g.class
-      end
+    stub_http_with_fixture("galleries.json")
+    galleries = @client.galleries
+    assert_equal Array, galleries.class
+    assert_equal 3, galleries.count
+    galleries.each do |g|
+      assert_equal FinerWorks::Gallery, g.class
     end
-    FinerWorks::Request.stub(:get, read_fixture("gallery.json")) do
-      one_gallery = @client.galleries
-      assert_equal Array, one_gallery.class
-      assert_equal 1, one_gallery.count
-      assert_equal FinerWorks::Gallery, one_gallery.first.class
-    end
+    stub_http_with_fixture("gallery.json")
+    one_gallery = @client.galleries
+    assert_equal Array, one_gallery.class
+    assert_equal 1, one_gallery.count
+    assert_equal FinerWorks::Gallery, one_gallery.first.class
   end
 
   # Verify that the client returns image data in the correct format.
   def test_images
-    FinerWorks::Request.stub(:get, read_fixture("images.json")) do
-      images = @client.images
-      assert_equal Array, images.class
-      assert_equal 4, images.count
-      images.each do |i|
-        assert_equal FinerWorks::Image, i.class
-      end
+    stub_http_with_fixture("images.json")
+    images = @client.images
+    assert_equal Array, images.class
+    assert_equal 4, images.count
+    images.each do |i|
+      assert_equal FinerWorks::Image, i.class
     end
-    FinerWorks::Request.stub(:get, read_fixture("image.json")) do
-      one_image = @client.images
-      assert_equal Array, one_image.class
-      assert_equal 1, one_image.count
-      assert_equal FinerWorks::Image, one_image.first.class
-    end
+    stub_http_with_fixture("image.json")
+    one_image = @client.images
+    assert_equal Array, one_image.class
+    assert_equal 1, one_image.count
+    assert_equal FinerWorks::Image, one_image.first.class
   end
 
   # Verify that the client returns order data in the correct format.
   def test_orders
-    FinerWorks::Request.stub(:get, read_fixture("orders.json")) do
-      orders = @client.orders
-      assert_equal Array, orders.class
-      assert_equal 4, orders.count
-      orders.each do |o|
-        assert_equal FinerWorks::Order, o.class
-      end
+    stub_http_with_fixture("orders.json")
+    orders = @client.orders
+    assert_equal Array, orders.class
+    assert_equal 4, orders.count
+    orders.each do |o|
+      assert_equal FinerWorks::Order, o.class
     end
-    FinerWorks::Request.stub(:get, read_fixture("order.json")) do
-      one_order = @client.orders
-      assert_equal Array, one_order.class
-      assert_equal 1, one_order.count
-      assert_equal FinerWorks::Order, one_order.first.class
-    end
+    stub_http_with_fixture("order.json")
+    one_order = @client.orders
+    assert_equal Array, one_order.class
+    assert_equal 1, one_order.count
+    assert_equal FinerWorks::Order, one_order.first.class
+  end
+
+  private
+
+  # Helper method to build a Net::HTTPResponse stub with a given fixture.
+  def stub_http_with_fixture(fixture_filename)
+    fixture = read_fixture(fixture_filename)
+    stub_request(:any, /.*api.finerworks.com.*/).to_return(status: 200, body: fixture)
   end
 end

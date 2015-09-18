@@ -24,7 +24,7 @@ You can retrieve and update your account information.
 > account.phone = "123-456-7890"
 => "123-456-7890"
 > client.update_account(account)
-=> {"ResponseContent"=>"Success", "ResponseStatusCode"=>"OK"}
+=> #<FinerWorks::Response:0x007fd94719cfa8 @code="200", @message="OK", ... >
 ```
 
 ### Prints

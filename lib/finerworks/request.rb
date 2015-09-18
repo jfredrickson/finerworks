@@ -1,6 +1,5 @@
 require 'uri'
 require 'net/http'
-require 'json'
 
 module FinerWorks
   class Request
@@ -16,7 +15,7 @@ module FinerWorks
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
-      JSON.parse(response.body)
+      FinerWorks::Response.new(response)
     end
 
     def self.post(client, path, options = {})
@@ -27,7 +26,7 @@ module FinerWorks
       request.body = options.to_json
       request.content_type = "application/json"
       response = http.request(request)
-      JSON.parse(response.body)
+      FinerWorks::Response.new(response)
     end
   end
 end

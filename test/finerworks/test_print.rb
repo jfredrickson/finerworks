@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestPrint < Minitest::Test
   def setup
-    @print = FinerWorks::Print.new(read_fixture("print.json"))
+    @print = FinerWorks::Print.new(read_fixture_as_json("print.json"))
   end
 
   # Verify that Print correctly initializes its attributes from the Web API.
