@@ -1,5 +1,7 @@
 # FinerWorks Ruby Gem
 
+[![Build Status](https://travis-ci.org/jfredrickson/finerworks.svg?branch=master)](https://travis-ci.org/jfredrickson/finerworks)
+
 A Ruby interface for the [FinerWorks Web API](http://api.finerworks.com/).
 
 ## Usage
