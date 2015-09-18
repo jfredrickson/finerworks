@@ -63,3 +63,24 @@ You can retrieve a list of images in a given gallery. Optionally, filter by Gall
 > images = client.images("GalleryGUID": "12345678-abcd-abcd-abcd-12345678abcd", sort: "ASC")
 => [#<FinerWorks::Image ...>, #<FinerWorks::Image ...>, ...]
 ```
+
+### Orders
+
+You can retrieve a list of your orders. Optionally, filter by a date/time range, by order status ID, or a specific order ID. Also, optionally sort by order ID (`ASC` or `DESC`; default is descending).
+
+#### Options
+
+* `"OrderDateTime_Start"` - Search for orders in the range starting at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
+* `"OrderDateTime_End"` - Search for orders in the range ending at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
+* `"OrderStatusID"` - Search for orders with a specific status.
+* `"OrderID"` - Find a specific order by ID.
+* `"Sort"` - Sort orders by ID in ascending or descending order. Possible values are `ASC` and `DESC`. Default is descending.
+
+```ruby
+> orders = client.orders
+=> [#<FinerWorks::Order ...>, #<FinerWorks::Order ...>, ...]
+> orders = client.orders("OrderDateTime_Start": "2015-05-01")
+=> [#<FinerWorks::Order ...>, #<FinerWorks::Order ...>, ...]
+> order = client.orders("OrderID": 12345)
+=> [#<FinerWorks::Order id=12345 ...>]
+```
