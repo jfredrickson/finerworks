@@ -3,6 +3,7 @@ require 'finerworks/account'
 require 'finerworks/print'
 require 'finerworks/gallery'
 require 'finerworks/image'
+require 'finerworks/order'
 
 module FinerWorks
   class Client
@@ -48,6 +49,19 @@ module FinerWorks
     #          Default is descending.
     def images(options = {})
       get(FinerWorks::Image, "/Images", options)
+    end
+
+    # Lists orders
+    #
+    # ==== Options hash:
+    # ["OrderDateTime_Start"] Search for orders in the range starting at the specified date/time.
+    # ["OrderDateTime_End"] Search for orders in the range ending at the specified date/time.
+    # ["OrderStatusID"] Search for orders with a specific status.
+    # ["OrderID"] Find a specific order by ID.
+    # ["Sort"] Sort orders by ID in ascending or descending order. Possible values are "ASC" and "DESC". Default is
+    #          descending.
+    def orders(options = {})
+      get(FinerWorks::Order, "/Orders", options)
     end
 
     # Generic GET method to request items of the specified +type+.

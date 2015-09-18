@@ -104,4 +104,22 @@ class TestClient < Minitest::Test
       assert_equal FinerWorks::Image, one_image.first.class
     end
   end
+
+  # Verify that the client returns order data in the correct format.
+  def test_orders
+    FinerWorks::Request.stub(:get, read_fixture("orders.json")) do
+      orders = @client.orders
+      assert_equal Array, orders.class
+      assert_equal 4, orders.count
+      orders.each do |o|
+        assert_equal FinerWorks::Order, o.class
+      end
+    end
+    FinerWorks::Request.stub(:get, read_fixture("order.json")) do
+      one_order = @client.orders
+      assert_equal Array, one_order.class
+      assert_equal 1, one_order.count
+      assert_equal FinerWorks::Order, one_order.first.class
+    end
+  end
 end
