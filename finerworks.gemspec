@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.summary = 'Ruby interface for the FinerWorks Web API'
   s.description = 'This gem wraps the FinerWorks Web API in order to provide an easy way to utilize the API in Ruby apps.'
   s.homepage = 'https://github.com/jfredrickson/finerworks'
-  s.version = '0.0.0'
+  s.version = '0.1.0'
   s.authors = ['Jeff Fredrickson']
   s.email = %w(jeff.fredrickson@gmail.com)
   s.files = %w(lib/finerworks.rb) + Dir['lib/finerworks/*.rb']
