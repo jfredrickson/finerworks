@@ -7,7 +7,7 @@ A Ruby interface for the [FinerWorks Web API](http://api.finerworks.com/).
 
 ## Installation
 
-```ruby
+```sh
 gem install finerworks
 ```
 
