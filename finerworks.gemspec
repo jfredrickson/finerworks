@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.email = %w(jeff.fredrickson@gmail.com)
   s.files = %w(lib/finerworks.rb) + Dir['lib/finerworks/*.rb']
   s.license = 'MIT'
+  s.required_ruby_version = '~> 1.9'
 
   s.add_runtime_dependency 'json', '~> 1.4'
   s.add_runtime_dependency 'hashie', '~> 3.4'
