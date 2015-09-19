@@ -5,4 +5,8 @@ Rake::TestTask.new do |task|
   task.pattern = 'test/finerworks/test_*.rb'
 end
 
+task :build do
+  system "gem build finerworks.gemspec"
+end
+
 task default: :test
