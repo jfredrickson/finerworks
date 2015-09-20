@@ -1,3 +1,5 @@
+require 'time'
+
 module FinerWorks
   class Account < Hashie::Trash
     property :business_company_name, from: "AccountBusinessCompanyName"
@@ -13,7 +15,7 @@ module FinerWorks
     property :business_phone, from: "AccountBusinessPhone"
     property :business_fax, from: "AccountBusinessFax"
     property :username, from: "AccountUsername"
-    property :registration_date, from: "AccountRegistrationDate", transform_with: lambda { |d| FinerWorks::Utilities.parse_api_time(d) }
+    property :registration_date, from: "AccountRegistrationDate", transform_with: lambda { |d| Time.parse(d) }
     property :email, from: "AccountEmail"
     property :type, from: "AccountType"
     property :first_name, from: "AccountFirstName"

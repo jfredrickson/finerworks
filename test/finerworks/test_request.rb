@@ -14,7 +14,7 @@ class TestRequest < Minitest::Test
     }
     stub_request(:any, /.*api.finerworks.com.*/).to_return(status: 200, body: '{"someRandomJson": 5}')
     result = FinerWorks::Request.get(@client, "/SomePath", params)
-    assert_requested(:get, "http://api.finerworks.com/api/SomePath?AccountApiKey=#{@key}&Foo=1&Bar=abc&baz=quux")
+    assert_requested(:get, "http://api.finerworks.com/api/SomePath?AccountApiKey=#{@key}&TimeZoneID=UTC&Foo=1&Bar=abc&baz=quux")
     assert_equal FinerWorks::Response, result.class
     assert_equal "200", result.code
     assert_equal 5, result.json["someRandomJson"]
@@ -23,7 +23,7 @@ class TestRequest < Minitest::Test
   def test_get_without_params
     stub_request(:any, /.*api.finerworks.com.*/).to_return(status: 200, body: '{"someRandomJson": 5}')
     result = FinerWorks::Request.get(@client, "/SomePath")
-    assert_requested(:get, "http://api.finerworks.com/api/SomePath?AccountApiKey=#{@key}")
+    assert_requested(:get, "http://api.finerworks.com/api/SomePath?AccountApiKey=#{@key}&TimeZoneID=UTC")
     assert_equal FinerWorks::Response, result.class
     assert_equal "200", result.code
     assert_equal 5, result.json["someRandomJson"]

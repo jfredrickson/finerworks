@@ -1,3 +1,5 @@
+require 'time'
+
 module FinerWorks
   class Image < Hashie::Trash
     property :guid, from: "ImageGUID"
@@ -5,13 +7,13 @@ module FinerWorks
     property :url_thumbnail, from: "ImageUrl_Thumbnail"
     property :original_file_name, from: "ImageOriginalFileName"
     property :file_name, from: "ImageFileName"
-    property :date_added, from: "ImageDateAdded", transform_with: lambda { |d| FinerWorks::Utilities.parse_api_time(d) }
+    property :date_added, from: "ImageDateAdded", transform_with: lambda { |d| Time.parse(d) }
     property :active, from: "ImageActive", transform_with: lambda { |value| value == "True" }
     property :file_size, from: "ImageFileSize"
     property :w, from: "ImageW"
     property :h, from: "ImageH"
     property :title, from: "ImageTitle"
-    property :date_updated, from: "ImageDateUpdated", transform_with: lambda { |d| FinerWorks::Utilities.parse_api_time(d) }
+    property :date_updated, from: "ImageDateUpdated", transform_with: lambda { |d| Time.parse(d) }
     property :rank, from: "ImageRank"
     property :order, from: "ImageOrder"
     property :rating, from: "ImageRating"

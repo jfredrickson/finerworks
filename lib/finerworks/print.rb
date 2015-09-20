@@ -1,3 +1,5 @@
+require 'time'
+
 module FinerWorks
   class Print < Hashie::Trash
     property :add_on_title, from: "AddOnTitle"
@@ -8,7 +10,7 @@ module FinerWorks
     property :image_title, from: "ImageTitle"
     property :media_name, from: "MediaName"
     property :mounting_name, from: "MountingName"
-    property :date_added, from: "PrintDateAdded", transform_with: lambda { |d| FinerWorks::Utilities.parse_api_time(d) }
+    property :date_added, from: "PrintDateAdded", transform_with: lambda { |d| Time.parse(d) }
     property :description, from: "PrintDescription"
     property :guid, from: "PrintGUID"
     property :media_id, from: "PrintMediaID"
