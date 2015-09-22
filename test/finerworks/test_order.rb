@@ -11,5 +11,6 @@ class TestOrder < Minitest::Test
     assert_equal Time.utc(2015, 9, 8, 10, 50, 18), @order.date_time
     assert_equal "21.95", @order.grand_total
     assert_equal "7", @order.status_id
+    assert @order.drop_ship?
   end
 end
