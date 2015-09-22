@@ -91,3 +91,12 @@ client.orders("OrderDateTime_Start": "2015-05-01")
 client.orders("OrderID": 12345)
 # => [#<FinerWorks::Order id=12345 ...>]
 ```
+
+### Order Details
+
+You can retrieve details for a specific order.
+
+```ruby
+client.order_details(12345)
+# => [#<FinerWorks::OrderDetails cart_id="20150831211231123" ...>]
+```

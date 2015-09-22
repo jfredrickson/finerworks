@@ -5,6 +5,7 @@ require 'finerworks/print'
 require 'finerworks/gallery'
 require 'finerworks/image'
 require 'finerworks/order'
+require 'finerworks/order_details'
 
 module FinerWorks
   class Client
@@ -63,6 +64,14 @@ module FinerWorks
     #          descending.
     def orders(options = {})
       get(FinerWorks::Order, "/Orders", options)
+    end
+
+    # Provides order details.
+    #
+    # ==== Parameters:
+    # [id] Order ID number.
+    def order_details(id)
+      get(FinerWorks::OrderDetails, "/OrderDetails", { "OrderID": id })
     end
 
     # Generic GET method to request items of the specified +type+. This always returns an +Array+.

@@ -114,6 +114,15 @@ class TestClient < Minitest::Test
     assert_equal FinerWorks::Order, one_order.first.class
   end
 
+  # Verify that the client returns order details in the correct format.
+  def test_order_details
+    stub_http_with_fixture("order_details.json")
+    order_details = @client.order_details(12345)
+    assert_equal Array, order_details.class
+    assert_equal 1, order_details.count
+    assert_equal FinerWorks::OrderDetails, order_details.first.class
+  end
+
   private
 
   # Helper method to build a Net::HTTPResponse stub with a given fixture.
