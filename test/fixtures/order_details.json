@@ -1,0 +1,76 @@
+{
+  "OrderID": 12345,
+  "OrderStatusLabel": "Shipped",
+  "OrderCartID": "20150831123456123",
+  "ShippingOptionMethod": "Priority",
+  "OrderCustomerGUID": "12345678-abcd-abcd-abcd-12345678abcd",
+  "OrderShippingCode": "",
+  "OrderShippingID": 4,
+  "OrderStatusID": 7,
+  "OrderSubTotal": 24,
+  "OrderSalesTax": 0,
+  "OrderDiscount": 0,
+  "OrderShipping": 9.95,
+  "OrderCreditsUsed": 0,
+  "OrderGrandTotal": 33.95,
+  "OrderDateTime": "2015-09-22T16:47:38Z",
+  "OrderDropShip": "False",
+  "OrderShippingInstructions": "",
+  "PaymentMethodName": "Visa",
+  "CustomerDetails": {
+    "CustomerID": 0,
+    "CustomerGUID": "00000000-0000-0000-0000-000000000000",
+    "CustomerBillingDetails": {
+      "CustomerBillFirstName": "Milton",
+      "CustomerBillMiddleName": "",
+      "CustomerBillLastName": "Waddams",
+      "CustomerBillCompany": "Initech",
+      "CustomerBillAddress1": "123 Main Street",
+      "CustomerBillAddress2": "",
+      "CustomerBillCity": "Austin",
+      "CustomerBillState": "TX",
+      "CustomerBillZip": "73301",
+      "CustomerBillStateOther": "",
+      "CustomerBillCountry": "us",
+      "CustomerBillPhone": "555-555-1212",
+      "CustomerBillEmail": "milton_waddams@initech.com"
+    },
+    "CustomerShippingDetails": {
+      "CustomerShipIsBill": "True",
+      "CustomerShipFirstName": "Milton",
+      "CustomerShipMiddleName": "",
+      "CustomerShipLastName": "Waddams",
+      "CustomerShipCompany": "Initech",
+      "CustomerShipAddress1": "123 Main Street",
+      "CustomerShipAddress2": "",
+      "CustomerShipCity": "Austin",
+      "CustomerShipState": "TX",
+      "CustomerShipZip": "73301",
+      "CustomerShipStateOther": "",
+      "CustomerShipCountry": "us",
+      "CustomerShipPhone": "555-555-1212"
+    }
+  },
+  "OrderItems": [
+    {
+      "PrintProductID": "111222",
+      "PrintProductTitle": "",
+      "PrintProductQty": "1",
+      "PrintProductPrice": "12.0000",
+      "PrintProductTypeID": "5",
+      "PrintProductName": "Fine Art Prints",
+      "StaticProductName": "",
+      "StaticProductID": ""
+    },
+    {
+      "PrintProductID": "333444",
+      "PrintProductTitle": "",
+      "PrintProductQty": "2",
+      "PrintProductPrice": "6.0000",
+      "PrintProductTypeID": "5",
+      "PrintProductName": "Fine Art Prints",
+      "StaticProductName": "",
+      "StaticProductID": ""
+    }
+  ]
+}
