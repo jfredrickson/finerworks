@@ -28,4 +28,12 @@ class TestRequest < Minitest::Test
     assert_equal "200", result.code
     assert_equal 5, result.json["someRandomJson"]
   end
+
+  def test_handle_404
+    stub_request(:any, /.*api.finerworks.com.*/).to_return(status: 404, body: 'oops')
+    result = FinerWorks::Request.get(@client, "/SomePath")
+    assert_equal FinerWorks::Response, result.class
+    assert_equal "404", result.code
+    assert_equal nil, result.json
+  end
 end

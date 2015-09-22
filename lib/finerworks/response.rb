@@ -8,7 +8,7 @@ module FinerWorks
       @code = http_response.code
       @message = http_response.message
       @body = http_response.body
-      @json = JSON.parse(@body)
+      @json = JSON.parse(@body) if http_response.is_a? Net::HTTPOK
     end
   end
 end
