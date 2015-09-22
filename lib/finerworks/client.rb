@@ -71,7 +71,7 @@ module FinerWorks
     # ==== Parameters:
     # [id] Order ID number.
     def order_details(id)
-      get(FinerWorks::OrderDetails, "/OrderDetails", { "OrderID": id })
+      get(FinerWorks::OrderDetails, "/OrderDetails", { "OrderID" => id })
     end
 
     # Generic GET method to request items of the specified +type+. This always returns an +Array+.
