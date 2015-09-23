@@ -1,3 +1,5 @@
+require 'time'
+
 module FinerWorks
   class OrderDetails < Hashie::Trash
     property :id, from: "OrderID"
