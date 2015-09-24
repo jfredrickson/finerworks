@@ -2,7 +2,7 @@
 *.gem
 
 # Ignore local development environment files.
-/.env/
+.env
 
 # Ignore operating system files.
 .DS_Store
@@ -10,5 +10,6 @@
 # Ignore Gemfile.lock, since this is a gem.
 Gemfile.lock
 
-# Ignore RDoc directory.
-/doc/
+# Ignore documentation directories/files.
+doc
+.yardoc

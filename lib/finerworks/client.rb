@@ -8,6 +8,9 @@ require 'finerworks/order'
 require 'finerworks/order_details'
 
 module FinerWorks
+  # The Client is the primary interface to the FinerWorks Web API.
+  #
+  # @attr [String] account_api_key A FinerWorks account API key.
   class Client
     attr_accessor :account_api_key
 
@@ -19,62 +22,75 @@ module FinerWorks
     end
 
     # Provides account profile information.
+    #
+    # @return [Account] Account information. Returns the account associated with the client's API key.
     def account
       result = FinerWorks::Request.get(self, "/Account")
       FinerWorks::Account.new(result.json)
     end
 
     # Updates account profile information.
+    #
+    # @param [Account] account Account information.
+    # @return [Response] API response.
     def update_account(account)
       result = FinerWorks::Request.post(self, "/Account", build_post_account_json(account))
     end
 
     # Lists prints stored in My Prints Inventory.
     #
-    # ==== Options hash:
-    # ["ImageGUID"] Filter by image.
-    # ["GalleryGUID"] Filter by gallery.
+    # @param [Hash] options Filtering options.
+    # @option options [String] "ImageGUID" Find prints based on a specific image.
+    # @option options [String] "GalleryGUID" Find prints whose images are under a specific gallery.
+    # @return [Array<Print>] A list of prints.
     def prints(options = {})
       get(FinerWorks::Print, "/Prints", options)
     end
 
     # Lists galleries (aka portfolios) under the current account.
+    #
+    # @return [Array<Gallery>] A list of galleries.
     def galleries
       get(FinerWorks::Gallery, "/Galleries")
     end
 
     # Lists images stored in My Images.
     #
-    # ==== Options hash:
-    # ["GalleryGUID"] Filter by gallery.
-    # ["Sort"] Sort images by upload date in ascending or descending order. Possible values are "ASC" and "DESC".
-    #          Default is descending.
+    # @param [Hash] options Filtering/sorting options.
+    # @option options [String] "GalleryGUID" Find images that are under a specific gallery.
+    # @option options [String] "Sort" ("DESC") Sort images by upload dates. Possible values are "ASC" or "DESC".
+    # @return [Array<Image>] A list of images.
     def images(options = {})
       get(FinerWorks::Image, "/Images", options)
     end
 
-    # Lists orders
+    # Lists orders.
     #
-    # ==== Options hash:
-    # ["OrderDateTime_Start"] Search for orders in the range starting at the specified date/time.
-    # ["OrderDateTime_End"] Search for orders in the range ending at the specified date/time.
-    # ["OrderStatusID"] Search for orders with a specific status.
-    # ["OrderID"] Find a specific order by ID.
-    # ["Sort"] Sort orders by ID in ascending or descending order. Possible values are "ASC" and "DESC". Default is
-    #          descending.
+    # @param [Hash] options Filtering/sorting options.
+    # @option options [String] "OrderDateTime_Start" Find orders in the time period starting at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
+    # @option options [String] "OrderDateTime_End" Find orders in the time period ending at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
+    # @option options [String] "OrderStatusID" Find orders with a specific status.
+    # @option options [String] "OrderID" Find a specific order by order ID.
+    # @option options [String] "Sort" ("DESC") Sort orders by ID. Possible values are "ASC" or "DESC".
+    # @return [Array<Order>] A list of orders.
     def orders(options = {})
       get(FinerWorks::Order, "/Orders", options)
     end
 
-    # Provides order details.
+    # Provides details for a specific order.
     #
-    # ==== Parameters:
-    # [id] Order ID number.
+    # @param id [Integer] Order ID number.
+    # @return [Array<OrderDetails>] Order details for the given order ID.
     def order_details(id)
       get(FinerWorks::OrderDetails, "/OrderDetails", { "OrderID" => id })
     end
 
     # Generic GET method to request items of the specified +type+. This always returns an +Array+.
+    #
+    # @param type [Class] Type of objects to return.
+    # @param path [String] API request path.
+    # @param [Hash] options Parameters to include in the request URI.
+    # @return [Array<Object>] A list of items.
     def get(type, path, options = {})
       response = FinerWorks::Request.get(self, path, options)
       items = response.json.kind_of?(Array) ? response.json : [response.json]
