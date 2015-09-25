@@ -13,3 +13,6 @@ Gemfile.lock
 # Ignore documentation directories/files.
 doc
 .yardoc
+
+# Ignore test coverage report.
+coverage
