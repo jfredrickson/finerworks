@@ -123,6 +123,22 @@ class TestClient < Minitest::Test
     assert_equal FinerWorks::OrderDetails, order_details.first.class
   end
 
+  # Verify that the client returns shopping carts in the correct format.
+  def test_order_submission
+    stub_http_with_fixture("carts.json")
+    carts = @client.order_submission(3)
+    assert_equal Array, carts.class
+    assert_equal 3, carts.count
+    carts.each do |c|
+      assert_equal FinerWorks::Cart, c.class
+    end
+    stub_http_with_fixture("cart.json")
+    one_cart = @client.order_submission
+    assert_equal Array, one_cart.class
+    assert_equal 1, one_cart.count
+    assert_equal FinerWorks::Cart, one_cart.first.class
+  end
+
   private
 
   # Helper method to build a Net::HTTPResponse stub with a given fixture.

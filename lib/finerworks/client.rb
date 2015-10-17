@@ -6,6 +6,7 @@ require 'finerworks/gallery'
 require 'finerworks/image'
 require 'finerworks/order'
 require 'finerworks/order_details'
+require 'finerworks/cart'
 
 module FinerWorks
   # The Client is the primary interface to the FinerWorks Web API.
@@ -83,6 +84,14 @@ module FinerWorks
     # @return [Array<OrderDetails>] Order details for the given order ID.
     def order_details(id)
       get(FinerWorks::OrderDetails, "/OrderDetails", { "OrderID" => id })
+    end
+
+    # Sets up shopping carts that can be used to submit orders.
+    #
+    # @param num_carts [Integer] Number of new carts to create (1-100). Default is 1.
+    # @return [Array<Cart>] New shopping cart(s).
+    def order_submission(num_carts = 1)
+      get(FinerWorks::Cart, "/OrderSubmission", { "NewCart" => num_carts })
     end
 
     # Generic GET method to request items of the specified +type+. This always returns an +Array+.

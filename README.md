@@ -100,3 +100,16 @@ You can retrieve details for a specific order.
 client.order_details(12345)
 # => [#<FinerWorks::OrderDetails cart_id="20150831211231123" ...>]
 ```
+
+
+### Order Submission (Shopping Carts)
+
+You can create new shopping carts, which can then be used to submit orders. Optionally, create multiple shopping carts
+at the same time (up to 100).
+
+```ruby
+client.order_submission
+# => [#<FinerWorks::Cart expiration=2015-10-31 02:10:24 UTC guid="12345678-abcd-abcd-abcd-12345678abcd">]
+client.order_submission(5)
+# => [#<FinerWorks::Cart ...>, #<FinerWorks::Cart ...>, ...]
+```
