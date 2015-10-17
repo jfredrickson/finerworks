@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'finerworks'
+require 'irb'
+
+@client = FinerWorks::Client.new({ account_api_key: ENV['ACCOUNT_API_KEY'] })
+IRB.start
