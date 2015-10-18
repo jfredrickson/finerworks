@@ -36,4 +36,19 @@ class TestRequest < Minitest::Test
     assert_equal "404", result.code
     assert_equal nil, result.json
   end
+
+  def test_post_with_options
+    options = {
+      "Foo" => 1,
+      "Bar" => "abc",
+      baz: "quux"
+    }
+    stub_request(:any, /.*api.finerworks.com.*/).to_return(status: 200, body: '{"someRandomJson": 5}')
+    result = FinerWorks::Request.post(@client, "/SomePath", options)
+    assert_requested(:post, "http://api.finerworks.com/api/SomePath?AccountApiKey=#{@key}&TimeZoneID=UTC",
+      body: options.to_json)
+    assert_equal FinerWorks::Response, result.class
+    assert_equal "200", result.code
+    assert_equal 5, result.json["someRandomJson"]
+  end
 end
