@@ -41,8 +41,8 @@ module FinerWorks
     # Lists prints stored in My Prints Inventory.
     #
     # @param [Hash] options Filtering options.
-    # @option options [String] "ImageGUID" Find prints based on a specific image.
-    # @option options [String] "GalleryGUID" Find prints whose images are under a specific gallery.
+    # @option options [String] ImageGUID Find prints based on a specific image.
+    # @option options [String] GalleryGUID Find prints whose images are under a specific gallery.
     # @return [Array<Print>] A list of prints.
     def prints(options = {})
       get(FinerWorks::Print, "/Prints", options)
@@ -58,8 +58,8 @@ module FinerWorks
     # Lists images stored in My Images.
     #
     # @param [Hash] options Filtering/sorting options.
-    # @option options [String] "GalleryGUID" Find images that are under a specific gallery.
-    # @option options [String] "Sort" ("DESC") Sort images by upload dates. Possible values are "ASC" or "DESC".
+    # @option options [String] GalleryGUID Find images that are under a specific gallery.
+    # @option options [String] Sort ("DESC") Sort images by upload dates. Possible values are "ASC" or "DESC".
     # @return [Array<Image>] A list of images.
     def images(options = {})
       get(FinerWorks::Image, "/Images", options)
@@ -68,11 +68,11 @@ module FinerWorks
     # Lists orders.
     #
     # @param [Hash] options Filtering/sorting options.
-    # @option options [String] "OrderDateTime_Start" Find orders in the time period starting at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
-    # @option options [String] "OrderDateTime_End" Find orders in the time period ending at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
-    # @option options [String] "OrderStatusID" Find orders with a specific status.
-    # @option options [String] "OrderID" Find a specific order by order ID.
-    # @option options [String] "Sort" ("DESC") Sort orders by ID. Possible values are "ASC" or "DESC".
+    # @option options [String] OrderDateTime_Start Find orders in the time period starting at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
+    # @option options [String] OrderDateTime_End Find orders in the time period ending at the specified date/time. Acceptable formats include "MM/DD/YYYY" or "YYYY-MM-DD".
+    # @option options [String] OrderStatusID Find orders with a specific status.
+    # @option options [String] OrderID Find a specific order by order ID.
+    # @option options [String] Sort ("DESC") Sort orders by ID. Possible values are "ASC" or "DESC".
     # @return [Array<Order>] A list of orders.
     def orders(options = {})
       get(FinerWorks::Order, "/Orders", options)

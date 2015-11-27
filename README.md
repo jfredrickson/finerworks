@@ -43,11 +43,11 @@ Access your "My Prints Inventory". Optionally, filter by Image GUID and/or Galle
 ```ruby
 client.prints
 # => [#<FinerWorks::Print ...>, #<FinerWorks::Print ...>, ...]
-client.prints("ImageGUID": "12345678-abcd-abcd-abcd-12345678abcd")
+client.prints(ImageGUID: "12345678-abcd-abcd-abcd-12345678abcd")
 # => [#<FinerWorks::Print ...>, #<FinerWorks::Print ...>, ...]
-client.prints("GalleryGUID": "12345678-abcd-abcd-abcd-12345678abcd")
+client.prints(GalleryGUID: "12345678-abcd-abcd-abcd-12345678abcd")
 # => [#<FinerWorks::Print ...>, #<FinerWorks::Print ...>, ...]
-client.prints("ImageGUID": "12345678-abcd-abcd-abcd-12345678abcd", "GalleryGUID": "12345678-abcd-abcd-abcd-12345678abcd")
+client.prints(ImageGUID: "12345678-abcd-abcd-abcd-12345678abcd", GalleryGUID: "12345678-abcd-abcd-abcd-12345678abcd")
 # => [#<FinerWorks::Print ...>, #<FinerWorks::Print ...>, ...]
 ```
 
@@ -67,7 +67,7 @@ You can retrieve a list of images in a given gallery. Optionally, filter by Gall
 ```ruby
 client.images
 # => [#<FinerWorks::Image ...>, #<FinerWorks::Image ...>, ...]
-client.images("GalleryGUID": "12345678-abcd-abcd-abcd-12345678abcd", sort: "ASC")
+client.images(GalleryGUID: "12345678-abcd-abcd-abcd-12345678abcd", sort: "ASC")
 # => [#<FinerWorks::Image ...>, #<FinerWorks::Image ...>, ...]
 ```
 
@@ -77,18 +77,18 @@ You can retrieve a list of your orders. Optionally, filter by a date/time range,
 
 #### Options
 
-* `"OrderDateTime_Start"` - Search for orders in the range starting at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
-* `"OrderDateTime_End"` - Search for orders in the range ending at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
-* `"OrderStatusID"` - Search for orders with a specific status.
-* `"OrderID"` - Find a specific order by ID.
-* `"Sort"` - Sort orders by ID in ascending or descending order. Possible values are `ASC` and `DESC`. Default is descending.
+* `OrderDateTime_Start` - Search for orders in the range starting at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
+* `OrderDateTime_End` - Search for orders in the range ending at the specified date/time. Possible formats: `MM/DD/YYYY` or `YYYY-MM-DD`.
+* `OrderStatusID` - Search for orders with a specific status.
+* `OrderID` - Find a specific order by ID.
+* `Sort` - Sort orders by ID in ascending or descending order. Possible values are `ASC` and `DESC`. Default is descending.
 
 ```ruby
 client.orders
 # => [#<FinerWorks::Order ...>, #<FinerWorks::Order ...>, ...]
-client.orders("OrderDateTime_Start": "2015-05-01")
+client.orders(OrderDateTime_Start: "2015-05-01")
 # => [#<FinerWorks::Order ...>, #<FinerWorks::Order ...>, ...]
-client.orders("OrderID": 12345)
+client.orders(OrderID: 12345)
 # => [#<FinerWorks::Order id=12345 ...>]
 ```
 
